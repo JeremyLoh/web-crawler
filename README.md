@@ -154,3 +154,5 @@ Array [ "With its astounding hardcover reviews Richard Zenith's new complete tra
 [WebdriverIO Selectors](https://webdriver.io/docs/selectors.html)
 
 [Regular Expressions (RegEx) in 100 Seconds](https://www.youtube.com/watch?v=sXQxhojSdZM)
+
+[Will Brock - 09 Selecting elements on a page - WebdriverIO](https://www.youtube.com/watch?v=ERrPn6Uwx_Q)
