@@ -2,6 +2,10 @@
 
 A web crawler used to obtain information about books from https://www.bookdepository.com/ when a barcode (isbn13) is given.
 
+Frameworks used:
+
+[WebdriverIO](https://webdriver.io/)
+
 ## Setup:
 
 1. Ensure that Node.js is installed
