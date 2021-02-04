@@ -6,6 +6,7 @@ const { remote } = require('webdriverio');
     capabilities: {
       browserName: 'chrome',
     },
+    waitforTimeout: 5000,
   });
 
   await browser.url('https://www.bookdepository.com/');
@@ -13,7 +14,7 @@ const { remote } = require('webdriverio');
 
   barcodes = ['9780241200131', '9781784871963'];
 
-  await searchBarcode(browser, '9780241200131');
+  await searchBarcode(browser, '9781784871963');
   const productDetails = await getProductDetails(browser);
 
   results.unshift(productDetails);
@@ -39,7 +40,7 @@ async function getProductDetails(browser) {
   const productInfo = await browser.$('.biblio-info');
 
   let format = '';
-  if (await (await productInfo.$('label=Dimensions')).isExisting()) {
+  if (await (await productInfo.$('label=Format')).isExisting()) {
     format = await (await productInfo.$('label=Format')).$('..');
     format = formatInfo(await format.getText(), new RegExp(/\d+\s.+/));
   }
