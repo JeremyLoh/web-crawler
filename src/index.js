@@ -1,4 +1,9 @@
 const { remote } = require("webdriverio");
+const fs = require("fs");
+
+const DIR = "./data";
+const OUTPUT_FILE = DIR + "/" + "output.txt";
+const INPUT_ISBN13_FILE = DIR + "/" + "inputIsbn13.txt";
 
 (async () => {
   const browser = await remote({
@@ -16,17 +21,54 @@ const { remote } = require("webdriverio");
   await browser.url("https://www.bookdepository.com/");
   const results = [];
 
-  barcodes = ["9780241200131", "9781784871963"];
-
-  await searchBarcode(browser, "9781784871963");
-  const bookDetails = await getBookDetails(browser);
-
-  results.unshift(bookDetails);
-  console.log("Results");
-  console.log(results);
-
-  //await browser.deleteSession()
+  await fs.readFile(INPUT_ISBN13_FILE, "utf8", function (err, data) {
+    if (err) {
+      // File does not exist, create it
+      writeData(INPUT_ISBN13_FILE, "");
+    }
+    const barcodes = data.split(/[\r\n]+/);
+    search = async () => {
+      for (const barcode of barcodes) {
+        await searchBarcode(browser, barcode);
+        const bookDetails = await getBookDetails(browser);
+        results.unshift(bookDetails);
+        console.log(results);
+        // Wait for information to be processed
+        await browser.pause(4000);
+      }
+      createDir(DIR);
+      writeData(OUTPUT_FILE, JSON.stringify(results));
+      await browser.deleteSession();
+    }
+    search();
+  });
 })().catch((e) => console.error(e));
+
+/**
+ * Writes text to a file.
+ * - file: Location of file to write data to.
+ * - text: Data for writting
+ */
+function writeData(file, text) {
+  fs.writeFile(file, text, function (err) {
+    if (err) {
+      return console.error(err);
+    }
+    console.log("Written data to " + file);
+  });
+}
+
+/**
+ * Creates a directory based on the given dirPath.
+ * - dirPath: Location of directory to be created.
+ */
+function createDir(dirPath) {
+  fs.mkdir(dirPath, { recursive: true }, function (err) {
+    if (err) {
+      throw err;
+    }
+  });
+}
 
 /**
  * Clicks the submit button after filling up the search input field on a given webpage.

@@ -2,6 +2,10 @@
 
 A web crawler used to obtain information about books from https://www.bookdepository.com/ when a barcode (isbn13) is given.
 
+The output and input files are located in the data/ directory.
+The input file (`inputIsbn13.txt`) contains isbn13 barcodes separated by a newline.
+The output file (`output.txt`) contains all of the results of the web search from https://www.bookdepository.com/.
+
 Frameworks used:
 
 [WebdriverIO](https://webdriver.io/)
@@ -158,3 +162,5 @@ Array [ "With its astounding hardcover reviews Richard Zenith's new complete tra
 [Will Brock - 09 Selecting elements on a page - WebdriverIO](https://www.youtube.com/watch?v=ERrPn6Uwx_Q)
 
 [WebdriverIO setTimeout](https://webdriver.io/docs/api/browser/setTimeout.html)
+
+[Node.js - How do i write files in Node.js?](https://nodejs.org/en/knowledge/file-system/how-to-write-files-in-nodejs/)
