@@ -37,6 +37,11 @@ const INPUT_ISBN13_FILE = DIR + "/" + "inputIsbn13.txt";
         await browser.pause(4000);
       }
       createDir(DIR);
+      results.forEach(result => {
+        result.description = result.description.replace(/[\r\n\s]{2,}/g, "\n");
+        result.description = result.description.replace(/[\r\n\s]*(show more)[\r\n\s]*$/, "");
+        result.description = result.description.trim();
+      });
       writeData(OUTPUT_FILE, JSON.stringify(results));
       await browser.deleteSession();
     }
@@ -122,7 +127,6 @@ async function getBookDetails(browser) {
   let description = await (
     await (await browser.$("div.item-description")).$("div")
   ).getText();
-  description = description.trim();
 
   const formatPromise = getText(
     "label=Format",

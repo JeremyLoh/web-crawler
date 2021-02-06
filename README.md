@@ -136,6 +136,18 @@ bestsellerRank.match(new RegExp(/[^(?!bestsellers rank)].+/i))
 
 ### Description
 
+Replacing multiple newlines to a single newline
+
+- `description.replace(/[\r\n\s]{2,}/g,"\n")`
+
+```JavaScript
+results.forEach(result => {
+   result.description = result.description.replace(/[\r\n\s]{2,}/g, "\n");
+   result.description = result.description.replace(/[\r\n\s]*(show more)[\r\n\s]*$/, "");
+   result.description = result.description.trim();
+});
+```
+
 ```JavaScript
 description
 >> "
