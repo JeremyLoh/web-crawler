@@ -32,6 +32,7 @@ Frameworks/packages used:
 
 The following information is stored in JSON format:
 
+1. Barcode (isbn13)
 1. Format
 1. Dimensions
 1. Publication Date
