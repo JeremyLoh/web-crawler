@@ -6,9 +6,10 @@ The output and input files are located in the data/ directory.
 The input file (`inputIsbn13.txt`) contains isbn13 barcodes separated by a newline.
 The output file (`output.txt`) contains all of the results of the web search from https://www.bookdepository.com/.
 
-Frameworks used:
+Frameworks/packages used:
 
 [WebdriverIO](https://webdriver.io/)
+[is-isbn](https://www.npmjs.com/package/is-isbn)
 
 ## Setup:
 
