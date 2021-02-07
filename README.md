@@ -8,8 +8,8 @@ The output file (`output.txt`) contains all of the results of the web search fro
 
 Frameworks/packages used:
 
-[WebdriverIO](https://webdriver.io/)
-[is-isbn](https://www.npmjs.com/package/is-isbn)
+* [WebdriverIO](https://webdriver.io/)
+* [is-isbn](https://www.npmjs.com/package/is-isbn)
 
 ## Setup:
 
