@@ -33,7 +33,7 @@ const INPUT_ISBN13_FILE = DIR + "/" + "inputIsbn13.txt";
     search = async () => {
       for (const barcode of barcodes) {
         await searchBarcode(browser, barcode);
-        const bookDetails = await getBookDetails(browser);
+        const bookDetails = await getBookDetails(browser, barcode);
         results.unshift(bookDetails);
         console.log(results);
         // Wait for information to be processed
@@ -122,8 +122,9 @@ async function getText(selector, productInfo, formatRegex) {
  * browser is currently viewing.
  * Various fields of a book are obtained simultaneously using Promise.all().
  * - browser: The WebdriverIO.BrowserObject used to retrieve the book.
+ * - barcode: The current book barcode searched.
  */
-async function getBookDetails(browser) {
+async function getBookDetails(browser, barcode) {
   const productInfo = await browser.$(".biblio-info");
   const promises = [];
 
@@ -223,6 +224,7 @@ async function getBookDetails(browser) {
   ] = await Promise.all(promises);
 
   return {
+    barcode,
     format,
     dimensions,
     publicationDate,
