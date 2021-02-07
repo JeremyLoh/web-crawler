@@ -1,5 +1,6 @@
 const { remote } = require("webdriverio");
 const fs = require("fs");
+const isIsbn = require('is-isbn')
 
 const DIR = "./data";
 const OUTPUT_FILE = DIR + "/" + "output.txt";
@@ -26,7 +27,9 @@ const INPUT_ISBN13_FILE = DIR + "/" + "inputIsbn13.txt";
       // File does not exist, create it
       writeData(INPUT_ISBN13_FILE, "");
     }
-    const barcodes = data.split(/[\r\n]+/);
+    const barcodes = data.split(/[\r\n]+/).filter(barcode => {
+      return isIsbn.validate(barcode);
+    });
     search = async () => {
       for (const barcode of barcodes) {
         await searchBarcode(browser, barcode);

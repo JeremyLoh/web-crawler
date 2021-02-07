@@ -26,5 +26,8 @@
     "@wdio/sync": "^6.11.0",
     "chromedriver": "^88.0.0",
     "wdio-chromedriver-service": "^6.0.4"
+  },
+  "dependencies": {
+    "is-isbn": "^1.1.0"
   }
 }
